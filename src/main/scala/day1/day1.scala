@@ -1,6 +1,6 @@
 package day1
 
-import scala.collection.mutable.ArrayBuffer
+import scala.collection.mutable.HashSet
 
 class Day1 {
     def solve(): Unit = {
@@ -16,7 +16,7 @@ class Day1 {
     
         //Part 2
         var cFreq = 0
-        var pFreqs = ArrayBuffer[Int]()
+        var pFreqs = HashSet[Int]()
         var cnt = 0
         var dupe = false
 
@@ -27,7 +27,7 @@ class Day1 {
 
             cFreq += i_lines(cnt)
             dupe = pFreqs.contains(cFreq)
-            pFreqs.append(cFreq)
+            pFreqs += cFreq
 
             cnt += 1
         }
