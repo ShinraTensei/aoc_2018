@@ -1,5 +1,7 @@
 package day1
 
+import scala.collection.mutable.ArrayBuffer
+
 class Day1 {
     def solve(): Unit = {
         val lines = scala.io.Source.fromFile("res/day1.txt").mkString.split("\n")
@@ -14,7 +16,7 @@ class Day1 {
     
         //Part 2
         var cFreq = 0
-        var pFreqs = Array(0)
+        var pFreqs = ArrayBuffer[Int]()
         var cnt = 0
         var dupe = false
 
@@ -24,20 +26,11 @@ class Day1 {
             }
 
             cFreq += i_lines(cnt)
-            dupe = has(pFreqs, cFreq)
-            pFreqs :+ cFreq
+            dupe = pFreqs.contains(cFreq)
+            pFreqs.append(cFreq)
 
             cnt += 1
         }
-        println("Part2:")
-    }
-
-    def has(arr: Array[Int], x: Int): Boolean = {
-        for(a <- 0 until arr.length) {
-            if(arr(a) == x) {
-            true
-            }
-        }
-        false
+        println("Part2: " + cFreq.toString)
     }
 }
